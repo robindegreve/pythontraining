@@ -50,6 +50,7 @@ score.goto(0, 250)
 score.hideturtle()
 score.write("Player A: {} - Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
 
+
 # functions
 def peddle_a_up():
     y = paddle_a.ycor()

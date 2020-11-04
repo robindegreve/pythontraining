@@ -4,21 +4,35 @@ from obstakel import Obstakel
 
 
 wn = turtle.Screen()
-wn.setup(width=700, height=500)
 wn.title("Robinland")
-wn.tracer(0)
 wn.bgpic("bg.gif")
-
+wn.setup(width=700, height=500)
+wn.tracer(0)
 
 # manneke
 speler = Manneke()
 
-# obstakel
-obstakel = Obstakel(-157)
+wn.listen()
+wn.onkeypress(speler.go_left, "q")
+wn.onkeypress(speler.go_right, "d")
+wn.onkeypress(speler.jump, "z")
 
 
-# tegenstander
+# obstakels
+obstakel_a = Obstakel(0)
 
 
-while True:
-    wn.update()
+def main():
+    running = True
+    while running:
+        wn.update()
+
+        # game controls
+        speler.gravity()
+        obstakel_a.check_colision(speler)
+
+
+if __name__ == "__main__":
+    main()
+
+
