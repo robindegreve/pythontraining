@@ -21,20 +21,18 @@ class Obstakel(turtle.Turtle):
 
 
     def check_colision(self, player):
-        # komende van links
-        # check eerst x-as
-        # dan y-as
-        # alleen terwijl in linker deel
-        if ((player.xcor() + player.act_w) > (self.xpos - self.act_w)) \
-                and ((player.ycor() - player.act_l) < (self.ypos + self.act_l)) \
-                and (player.xcor() < self.xpos):
-            player.setx(player.xcor() - player.size_w)
-
-        # komende van rechts
-        if ((player.xcor() - player.act_w) < (self.xpos + self.act_w)) \
-                and ((player.ycor() - player.act_l) < (self.ypos + self.act_l)) \
-                and (player.xcor() > self.xpos):
-            player.setx(player.xcor() + player.size_w)
+        if (player.xcor()) > (self.xpos - self.act_w) \
+                and (player.ycor() - player.act_l) >= (self.ypos - self.act_l) \
+                and player.xcor() < (self.xpos + self.act_w):
+            player.limit_gravity((self.ypos + self.act_l))
+        elif (self.xpos - self.act_w) < (player.xcor() + player.act_w) < (self.xpos + self.act_w) \
+                and (player.ycor() - player.act_l) < (self.ypos + self.act_l):
+            player.setx((player.xcor() - player.size_w))
+        elif (self.xpos + self.act_w) > (player.xcor() - player.act_w) > (self.xpos - self.act_w) \
+                and (player.ycor() - player.act_l) < (self.ypos + self.act_l):
+            player.setx((player.xcor() + player.size_w))
+        else:
+            player.gravity()
 
 
     # hitbox

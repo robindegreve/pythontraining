@@ -10,6 +10,7 @@ class Manneke(turtle.Turtle):
     act_l = size_l * 10
     jump_h = 250
     tilted = "right"
+    max_gravity = -157
 
     def __init__(self):
         super(Manneke, self).__init__()
@@ -17,7 +18,7 @@ class Manneke(turtle.Turtle):
         self.shape("turtle")
         self.color("green")
         self.penup()
-        self.goto(-350, -157)
+        self.goto(-350, self.max_gravity)
         self.shapesize(stretch_len=self.size_l, stretch_wid=self.size_w)  # maal 15
         self.dx = 0.1
         self.dy = 0.07
@@ -44,11 +45,14 @@ class Manneke(turtle.Turtle):
 
 
     def jump(self):
-        if self.ycor() <= -157:
-            self.sety(self.ycor() + self.jump_h)
+        self.sety(self.ycor() + self.jump_h)
 
 
     def gravity(self):
-        if self.ycor() > -157:
-            print("going down")
+        if self.ycor() > self.max_gravity:
+            self.sety(self.ycor() - self.dy)
+
+
+    def limit_gravity(self, maxgravity):
+        if (self.ycor() - self.act_l) > maxgravity:
             self.sety(self.ycor() - self.dy)

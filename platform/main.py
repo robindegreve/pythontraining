@@ -26,9 +26,6 @@ def main():
     running = True
     while running:
         wn.update()
-
-        # game controls
-        speler.gravity()
         obstakel_a.check_colision(speler)
 
 
