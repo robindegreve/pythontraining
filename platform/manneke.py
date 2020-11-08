@@ -1,5 +1,4 @@
 import turtle
-from time import sleep
 
 
 class Manneke(turtle.Turtle):

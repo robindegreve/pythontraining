@@ -19,29 +19,3 @@ class Obstakel(turtle.Turtle):
         self.color("#663300")
         self.xpos = xpos
 
-
-    def check_colision(self, player):
-        if (player.xcor()) > (self.xpos - self.act_w) \
-                and (player.ycor() - player.act_l) >= (self.ypos - self.act_l) \
-                and player.xcor() < (self.xpos + self.act_w):
-            player.limit_gravity((self.ypos + self.act_l))
-        elif (self.xpos - self.act_w) < (player.xcor() + player.act_w) < (self.xpos + self.act_w) \
-                and (player.ycor() - player.act_l) < (self.ypos + self.act_l):
-            player.setx((player.xcor() - player.size_w))
-        elif (self.xpos + self.act_w) > (player.xcor() - player.act_w) > (self.xpos - self.act_w) \
-                and (player.ycor() - player.act_l) < (self.ypos + self.act_l):
-            player.setx((player.xcor() + player.size_w))
-        else:
-            player.gravity()
-
-
-    # hitbox
-    #   x-as links:
-    #       self.ycor - (self.size_w * 10) - (player.size_w * 10)
-    #
-    #   x-as rechts:
-    #       self.ycor + (self.size_w * 10) + (player.size_w * 10)
-    #
-    #   y-as boven:
-    #
-
